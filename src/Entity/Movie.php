@@ -21,7 +21,7 @@ class Movie
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'integer')]
     private $year;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -64,12 +64,12 @@ class Movie
         return $this;
     }
 
-    public function getYear(): ?\DateTimeInterface
+    public function getYear(): ?int
     {
         return $this->year;
     }
 
-    public function setYear(\DateTimeInterface $year): self
+    public function setYear(int $year): self
     {
         $this->year = $year;
 
