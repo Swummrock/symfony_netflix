@@ -16,24 +16,24 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {        
-        // $user = new User();
-        // $user->setFirstname("SE13");
-        // $user->setLastname("C");
-        // $user->setEmail('se13@gp.fr');
-        // // $user->setPassword($this->passwordEncoder->hashPassword(
-        // //     $user,
-        // //     'wick'
-        // // ));
-        // $manager->persist($user);
-        // $user2 = new User();
-        // $user2->setFirstname("AA");
-        // $user2->setLastname("AA");
-        // $user2->setEmail('aa@gp.fr');
-        // // $user2->setPassword($this->passwordEncoder->hashPassword(
-        // //     $user2,
-        // //     'SE13'
-        // // ));
-        // $manager->persist($user2);
-        // $manager->flush();
+        $user = new User();
+        $user->setFirstname("SE13");
+        $user->setLastname("C");
+        $user->setEmail('se13@gp.fr');
+        $user->setPassword($this->passwordEncoder->hashPassword(
+            $user,
+            'wick'
+        ));
+        $manager->persist($user);
+        $user2 = new User();
+        $user2->setFirstname("AA");
+        $user2->setLastname("AA");
+        $user2->setEmail('aa@gp.fr');
+        $user2->setPassword($this->passwordEncoder->hashPassword(
+            $user2,
+            'SE13'
+        ));
+        $manager->persist($user2);
+        $manager->flush();
     }
 }
