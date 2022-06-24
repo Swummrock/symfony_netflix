@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         $user->setEmail('se13@gp.fr');
         $user->setPassword($this->passwordEncoder->hashPassword(
             $user,
-            'wick'
+            'se13cBON'
         ));
         $manager->persist($user);
         $user2 = new User();
