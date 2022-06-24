@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
+#[ApiResource()]
 class User implements PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
@@ -31,14 +33,14 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     private $password;
 
     #[ORM\ManyToMany(targetEntity: Movie::class, inversedBy: 'users')]
-    private $myTop;
+    private $favorite;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
     public function __construct()
     {
-        $this->myTop = new ArrayCollection();
+        $this->favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,23 +99,23 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
     /**
      * @return Collection<int, Movie>
      */
-    public function getMyTop(): Collection
+    public function getFavorite(): Collection
     {
-        return $this->myTop;
+        return $this->favorite;
     }
 
-    public function addMyTop(Movie $myTop): self
+    public function addFavorite(Movie $favorite): self
     {
-        if (!$this->myTop->contains($myTop)) {
-            $this->myTop[] = $myTop;
+        if (!$this->favorite->contains($favorite)) {
+            $this->favorite[] = $favorite;
         }
 
         return $this;
     }
 
-    public function removeMyTop(Movie $myTop): self
+    public function removefavorite(Movie $favorite): self
     {
-        $this->myTop->removeElement($myTop);
+        $this->favorite->removeElement($favorite);
 
         return $this;
     }

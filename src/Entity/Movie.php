@@ -27,7 +27,7 @@ class Movie
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'myTop')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favorite')]
     private $users;
 
     public function __construct()
@@ -100,7 +100,7 @@ class Movie
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addMyTop($this);
+            $user->addfavorite($this);
         }
 
         return $this;
@@ -109,7 +109,7 @@ class Movie
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeMyTop($this);
+            $user->removefavorite($this);
         }
 
         return $this;
